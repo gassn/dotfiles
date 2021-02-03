@@ -116,6 +116,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source $HOME/.cargo/env
+# vi like keybind
+set -o vi
+
+# AddPATH
+export PATH=$PATH:~/.yarn/bin
+
+# Init process of other softwares 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(anyenv init -)"
 eval "$(starship init bash)"
 
