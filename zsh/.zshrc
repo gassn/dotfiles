@@ -10,17 +10,31 @@ fi
 ### EnvironmentVariables
 export LANG=ja_JP.UTF-8
 export PATH=$PATH:~/.yarn/bin
-export HISTFILE=~/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=10000
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(anyenv init -)"
 ### End of EnvironmentVariables chunk
 
 
 ### OtherSettings
+# Key binding
 bindkey -v
+# allow no cd typing
+setopt auto_cd
+# cd completion
+setopt auto_pushd
+setopt pushd_ignore_dups
+# Use Japanese
+setopt print_eight_bit
+# Beep
+setopt no_beep
+setopt nolistbeep
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=10000
+setopt share_history
 setopt hist_ignore_dups
+setopt hist_reduce_blanks
 ### End of OtherSettings chunk
 
 
@@ -39,6 +53,8 @@ if type brew &>/dev/null; then
   autoload -Uz compinit
   compinit
 fi
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:default' menu select=1
 ### End of Completion chunk
 
 
