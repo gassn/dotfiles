@@ -40,4 +40,6 @@ anyenv install nodenv
 # AWS CLI tool.
 brew install awscli
 
-
+# tmux
+brew install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

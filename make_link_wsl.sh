@@ -4,6 +4,7 @@ echo 'This script remove these files.'
 echo 'If you need, backup these files before running script.'
 echo '~/.bashrc'
 echo '~/.zshrc'
+echo '~/.tmux.conf'
 echo '~/.config/starship.toml'
 echo ''
 read -p "ok? (y/N): " yn
@@ -21,6 +22,10 @@ echo 'link .bashrc complete.'
 rm -f ~/.zshrc
 ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
 echo 'link .zshrc complete.'
+
+rm -f ~/.tmux.conf
+ln -sf ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
+echo 'link .tmux.conf complete.'
 
 rm -f ~/.config/starship.toml
 ln -sf ~/dotfiles/other/starship.toml ~/.config/starship.toml
