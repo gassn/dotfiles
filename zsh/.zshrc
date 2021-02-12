@@ -9,28 +9,33 @@ fi
 
 ### EnvironmentVariables
 export LANG=ja_JP.UTF-8
+export LANGUAGE=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
 export PATH=$PATH:~/.yarn/bin
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(anyenv init -)"
+eval "$(nodenv init -)"
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
 ### End of EnvironmentVariables chunk
 
 
 ### OtherSettings
-# Key binding
+# Key binding as vim.
 bindkey -v
-# allow no cd typing
+# allow no cd typing.
 setopt auto_cd
-# cd completion
+# cd completion.
 setopt auto_pushd
 setopt pushd_ignore_dups
-# Use Japanese
+# Use Japanese.
 setopt print_eight_bit
-# Beep
+# No beep.
 setopt no_beep
 setopt nolistbeep
 # History
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
+HISTSIZE=10000
 SAVEHIST=10000
 setopt share_history
 setopt hist_ignore_dups
@@ -44,6 +49,9 @@ alias ls='exa'
 alias ll='exa -lhg --time-style long-iso --git'
 alias la='exa -a'
 alias g='git'
+alias gs='git status'
+alias tmux='tmux -u'
+alias vim='nvim'
 ### End of Aliases chunk
 
 

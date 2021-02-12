@@ -10,3 +10,5 @@ yarn global add @aws-amplify/cli
 # Install serverless framework.
 yarn global add serverless
 
+# Install neovim
+yarn global add neovim

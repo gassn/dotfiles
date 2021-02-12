@@ -3,4 +3,4 @@ my dotfiles.
 
 # Manual configurations.
 - Edit sudoers.
-- exec $SHELL -l
+  - (Recommend) Change sudoer as NOPASSWD before execute install.sh.
