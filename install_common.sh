@@ -31,5 +31,6 @@ brew install git curl wget fzf exa bat ripgrep fd bash-completion vim oh-my-posh
 ################################################################################
 ### Settings.
 ################################################################################
-# main user don't need sudo password.
-echo "`whoami` ALL=NOPASSWD: ALL" | sudo tee /etc/sudoers.d/main_user
+
+# TODOs
+# brewのbash-completionのインストールに失敗するのを修正。

@@ -118,4 +118,17 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Enable oh-my-posh.
-eval "$(oh-my-posh init bash)"
+# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/atomic.omp.json)"
+# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/blue-owl.omp.json)"
+### eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/clean-detailed.omp.json)"
+## eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/lambdageneration.omp.json)"
+## eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/montys.omp.json)"
+## eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/microverse-power.omp.json)"
+# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/paradox.omp.json)"
+eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/quick-term.omp.json)"
+# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/sonicboom_light.omp.json)"
+# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/wholespace.omp.json)"
+
+# Todos
+# 無難なテーマ選定 -> Done.
+# Alias File
