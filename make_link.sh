@@ -5,6 +5,7 @@ echo 'If you need, backup these files before running script.'
 echo '~/.bashrc'
 echo '~/.bash_logout'
 echo '~/.fzf.bash'
+echo '~/.bash_aliases'
 echo ''
 
 read -p "ok? (y/N): " yn
@@ -26,3 +27,7 @@ echo 'link .bash_logout complete.'
 rm -f ~/.fzf.bash
 ln -sf ~/dotfiles/bash/.fzf.bash ~/.fzf.bash
 echo 'link .fzf.bash complete.'
+
+rm -f ~/.bash_aliases
+ln -sf ~/dotfiles/bash/.bash_aliases ~/.bash_aliases
+echo 'link .bash_aliases complete.'
