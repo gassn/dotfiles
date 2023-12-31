@@ -131,4 +131,4 @@ eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/quick-t
 
 # Todos
 # 無難なテーマ選定 -> Done.
-# Alias File
+# Alias File -> Done.
