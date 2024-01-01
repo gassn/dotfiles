@@ -107,6 +107,10 @@ eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/quick-t
 # eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/sonicboom_light.omp.json)"
 # eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/wholespace.omp.json)"
 
+# Enable asdf.
+. /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
+. /home/linuxbrew/.linuxbrew/etc/bash_completion.d/asdf.bash
+
 # Todos
 # 無難なテーマ選定 -> Done.
 # Alias File -> Done.
