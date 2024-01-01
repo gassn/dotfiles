@@ -112,5 +112,3 @@ eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/quick-t
 . /home/linuxbrew/.linuxbrew/etc/bash_completion.d/asdf.bash
 
 # Todos
-# 無難なテーマ選定 -> Done.
-# Alias File -> Done.
