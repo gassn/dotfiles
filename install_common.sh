@@ -26,7 +26,7 @@ brew install gcc
 ### Install tools.
 ################################################################################
 # Install tools using brew.
-brew install git curl wget fzf exa bat ripgrep fd bash-completion vim oh-my-posh
+brew install git curl wget fzf eza bat ripgrep fd asdf vim oh-my-posh bash-completion
 
 ################################################################################
 ### Settings.
