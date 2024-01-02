@@ -111,4 +111,10 @@ eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/quick-t
 . /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
 . /home/linuxbrew/.linuxbrew/etc/bash_completion.d/asdf.bash
 
+# Rust.
+# source "/home/gassn/.asdf/installs/rust/1.75.0/env"
+
 # Todos
+
+. $HOME/esp/esp-idf/export.sh > /dev/null 2>&1 || true
+. $HOME/.cargo/env
