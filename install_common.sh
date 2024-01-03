@@ -16,21 +16,21 @@ sudo localedef -f UTF-8 -i ja_JP ja_JP
 ################################################################################
 # Install Linuxbrew.
 ################################################################################
-# Install tools.
+# Install prerequirement tools.
 sudo apt-get install git curl build-essential -y
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" NONINTERACTIVE=1
+yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-brew install gcc
 
 ################################################################################
 ### Install tools.
 ################################################################################
 # Install tools using brew.
-brew install git curl wget fzf eza bat ripgrep fd asdf vim oh-my-posh bash-completion
+brew install gcc git curl wget fzf eza bat ripgrep fd vim oh-my-posh
+brew unlink util-linux
+brew install bash-completion
 
 ################################################################################
 ### Settings.
 ################################################################################
 
 # TODOs
-# brewのbash-completionのインストールに失敗するのを修正。

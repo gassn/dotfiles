@@ -21,7 +21,7 @@ HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -95,7 +95,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # Enable fzf.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Enable oh-my-posh.
+# Enable oh-my-posh theme.
 # eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/atomic.omp.json)"
 # eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/blue-owl.omp.json)"
 ### eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/clean-detailed.omp.json)"
@@ -108,13 +108,9 @@ eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/quick-t
 # eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/wholespace.omp.json)"
 
 # Enable asdf.
-. /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
-. /home/linuxbrew/.linuxbrew/etc/bash_completion.d/asdf.bash
-
-# Rust.
-# source "/home/gassn/.asdf/installs/rust/1.75.0/env"
+if [ -f ~/.bash_asdf ]; then
+    . ~/.bash_asdf
+fi
 
 # Todos
 
-. $HOME/esp/esp-idf/export.sh > /dev/null 2>&1 || true
-. $HOME/.cargo/env

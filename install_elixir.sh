@@ -6,6 +6,13 @@ if [ "$(id -u)" = "0" ]; then
    exit 1
 fi
 
+# Check asdf installed.
+if ! command -v asdf &> /dev/null
+then
+    echo "asdf is not installed."
+    exit 1
+fi
+
 ################################################################################
 ### Install Erlang and Elixir.
 ################################################################################
@@ -19,3 +26,6 @@ asdf install erlang latest
 asdf install elixir latest
 asdf global erlang $(asdf latest erlang)
 asdf global elixir $(asdf latest elixir)
+
+# TODOs
+# バージョン指定、スコープ指定
