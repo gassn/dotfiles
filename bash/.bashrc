@@ -112,5 +112,11 @@ if [ -f ~/.bash_asdf ]; then
     . ~/.bash_asdf
 fi
 
+# For ESP32 Matter setup.
+cd $HOME/esp/esp-idf; source export.sh
+cd $HOME/esp/esp-matter; source export.sh
+cd $HOME
+export IDF_CCACHE_ENABLE=1
+
 # Todos
 
