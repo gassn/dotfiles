@@ -38,7 +38,8 @@ Reorganize the dotfiles repository: clean up unused configurations, migrate to G
 
 #### `.bash_asdf`
 
-- Evaluate whether this file is still needed: `.bashrc` now inlines asdf setup via `asdf completion bash`. If redundant, delete the file. If it provides additional completions, source it from `.bashrc`.
+- `.bashrc` currently does NOT source `.bash_asdf`. The file is only reachable via the `install_asdf.sh` symlink (`~/.bash_asdf`), which will be removed in Phase 2.
+- Evaluate whether this file is still needed: `.bashrc` now inlines asdf setup via `asdf completion bash`. If that provides equivalent completions, delete `.bash_asdf`. If `.bash_asdf` provides richer subcommand completions, add `source ~/.bash_asdf` to `.bashrc` and keep the file in the `bash/` Stow package.
 
 #### `install_common.sh`
 
@@ -100,18 +101,18 @@ Stow's default target is the parent directory of the stow dir. Since the repo is
 
 Execution order (dependency-based):
 
-1. `scripts/install_common.sh` — base packages (Linuxbrew, stow, starship, gh, CLI tools)
+1. `scripts/install_common.sh` — base packages (Linuxbrew, stow, starship, gh, eza, bat, ripgrep, fd, fzf, vim)
 2. `stow bash` — create shell config symlinks
 3. `scripts/install_asdf.sh` — asdf version manager
 4. `scripts/install_elixir.sh` — Elixir via asdf (depends on asdf)
-5. `scripts/git_settings.sh` — Git configuration (requires interactive input: email and username)
+5. `scripts/git_settings.sh <email> <username>` — Git configuration (requires email and username as CLI arguments)
 
 ### Requirements
 
 - Idempotent: safe to run multiple times
 - Root execution prevention (inherited from existing scripts)
 - Success/failure logging per step
-- `git_settings.sh` prompts for email/username interactively (cannot run unattended)
+- `git_settings.sh` requires email and username as CLI arguments; `install.sh` should prompt the user and pass them
 
 ### `install_elixir.sh` Improvements
 
