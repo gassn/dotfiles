@@ -33,15 +33,19 @@ run_step "Install base packages" "$SCRIPT_DIR/scripts/install_common.sh"
 log "Creating symlinks via stow..."
 cd "$SCRIPT_DIR"
 stow bash
+stow tmux
 log "Done: symlinks created"
 
-# Step 3: asdf version manager
+# Step 3: tmux + TPM + plugins
+run_step "Install tmux" "$SCRIPT_DIR/scripts/install_tmux.sh"
+
+# Step 4: asdf version manager
 run_step "Install asdf" "$SCRIPT_DIR/scripts/install_asdf.sh"
 
-# Step 4: Elixir (depends on asdf)
+# Step 5: Elixir (depends on asdf)
 run_step "Install Elixir" "$SCRIPT_DIR/scripts/install_elixir.sh"
 
-# Step 5: Git settings
+# Step 6: Git settings
 if [ "$#" -eq 2 ]; then
     run_step "Configure git" "$SCRIPT_DIR/scripts/git_settings.sh" "$1" "$2"
 else
