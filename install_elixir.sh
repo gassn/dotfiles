@@ -24,8 +24,5 @@ asdf plugin add erlang
 asdf plugin add elixir
 asdf install erlang latest
 asdf install elixir latest
-asdf global erlang $(asdf latest erlang)
-asdf global elixir $(asdf latest elixir)
-
-# TODOs
-# バージョン指定、スコープ指定
+asdf set --home erlang "$(asdf latest erlang)"
+asdf set --home elixir "$(asdf latest elixir)"
