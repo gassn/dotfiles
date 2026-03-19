@@ -10,6 +10,3 @@ fi
 ### Install asdf.
 ################################################################################
 brew install asdf
-
-rm -f ~/.bash_asdf
-ln -sf ~/dotfiles/bash/.bash_asdf ~/.bash_asdf
