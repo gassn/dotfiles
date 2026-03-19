@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -89,34 +89,18 @@ set -o vi
 # Init linuxbrew.
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Enable completion.
-[[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
-
 # Enable fzf.
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Enable oh-my-posh theme.
-# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/atomic.omp.json)"
-# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/blue-owl.omp.json)"
-### eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/clean-detailed.omp.json)"
-## eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/lambdageneration.omp.json)"
-## eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/montys.omp.json)"
-## eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/microverse-power.omp.json)"
-# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/paradox.omp.json)"
-eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/quick-term.omp.json)"
-# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/sonicboom_light.omp.json)"
-# eval "$(oh-my-posh init bash --config $(brew --prefix oh-my-posh)/themes/wholespace.omp.json)"
+# Enable completion.
+[[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 
 # Enable asdf.
-if [ -f ~/.bash_asdf ]; then
-    . ~/.bash_asdf
-fi
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+. <(asdf completion bash)
+. <(gh completion bash)
 
-# For ESP32 Matter setup.
-cd $HOME/esp/esp-idf; source export.sh
-cd $HOME/esp/esp-matter; source export.sh
-cd $HOME
-export IDF_CCACHE_ENABLE=1
+export PATH="$HOME/.local/bin:$PATH"
 
-# Todos
+eval "$(starship init bash)"
 
