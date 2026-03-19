@@ -6,6 +6,9 @@ if [ "$(id -u)" = "0" ]; then
    exit 1
 fi
 
+# Init linuxbrew.
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # Check asdf installed.
 if ! command -v asdf &> /dev/null
 then

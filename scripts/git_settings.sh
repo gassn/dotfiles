@@ -21,4 +21,4 @@ USERNAME=$2
 git config --global user.email "$EMAIL"
 git config --global user.name "$USERNAME"
 git config --global color.ui auto
-git config --global core.editor nvim
+git config --global core.editor vim
