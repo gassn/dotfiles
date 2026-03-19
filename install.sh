@@ -42,8 +42,8 @@ run_step "Install tmux" "$SCRIPT_DIR/scripts/install_tmux.sh"
 # Step 4: asdf version manager
 run_step "Install asdf" "$SCRIPT_DIR/scripts/install_asdf.sh"
 
-# Step 5: Elixir (depends on asdf)
-run_step "Install Elixir" "$SCRIPT_DIR/scripts/install_elixir.sh"
+# Step 5: Languages via asdf (erlang, elixir, nodejs, python, awscli)
+run_step "Install languages" "$SCRIPT_DIR/scripts/install_languages.sh"
 
 # Step 6: Git settings
 if [ "$#" -eq 2 ]; then
