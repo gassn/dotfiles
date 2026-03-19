@@ -1,3 +1,0 @@
-# Enable asdf.
-. /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
-. /home/linuxbrew/.linuxbrew/etc/bash_completion.d/asdf.bash
