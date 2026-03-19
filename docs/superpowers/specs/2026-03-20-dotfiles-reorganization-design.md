@@ -7,9 +7,10 @@ Reorganize the dotfiles repository: clean up unused configurations, migrate to G
 ## Context
 
 - WSL2 environment, Bash shell
+- Repository location: `~/dotfiles` (Stow relies on this assumption)
 - Active tools: asdf, Erlang/Elixir, Linuxbrew, fzf, Starship, GitHub CLI
 - Inactive tools (to remove): Rust, ESP-IDF, Matter SDK, oh-my-posh
-- Current symlink management: manual `make_link.sh`
+- Current symlink management: manual `make_link.sh` + `install_asdf.sh`
 - Uncommitted changes in `.bash_asdf` and `.bashrc` for over a year
 
 ## Phase 1: Cleanup
@@ -27,8 +28,9 @@ Reorganize the dotfiles repository: clean up unused configurations, migrate to G
 #### `.bashrc`
 
 - Remove all oh-my-posh lines (commented out, replaced by Starship)
-- Remove `~/.cargo/env` source line (Rust removed)
+- Remove `~/.cargo/env` source line (from a separate rustup install, no longer needed)
 - Remove any ESP-IDF/Matter related settings
+- Remove duplicate `bash_completion.sh` sourcing (appears twice)
 
 #### `.bash_aliases`
 
@@ -36,7 +38,14 @@ Reorganize the dotfiles repository: clean up unused configurations, migrate to G
 
 #### `.bash_asdf`
 
-- Accept the new completion script (147 lines replacing the old 3-line source)
+- Evaluate whether this file is still needed: `.bashrc` now inlines asdf setup via `asdf completion bash`. If redundant, delete the file. If it provides additional completions, source it from `.bashrc`.
+
+#### `install_common.sh`
+
+- Remove `oh-my-posh` from `brew install` list
+- Add `starship` to `brew install` list
+- Add `stow` to `brew install` list
+- Add `gh` (GitHub CLI) to `brew install` list
 
 ### Files to Keep
 
@@ -52,33 +61,38 @@ Reorganize the dotfiles repository: clean up unused configurations, migrate to G
 dotfiles/
 ├── bash/                      # Stow package
 │   ├── .bashrc
-│   ├── .bash_asdf
 │   ├── .bash_aliases
 │   ├── .bash_logout
 │   └── .fzf.bash
-├── scripts/                   # Not a stow package
+├── docs/                      # Documentation (not a stow package)
+│   └── superpowers/specs/
+├── scripts/                   # Install scripts (not a stow package)
 │   ├── install_asdf.sh
 │   ├── install_elixir.sh
 │   ├── install_common.sh
 │   ├── git_settings.sh
 │   └── no_sudo_password.sh
 ├── install.sh                 # Master script
-├── .stow-local-ignore         # Ignore patterns for stow
 └── README.md
 ```
+
+Note: `.bash_asdf` is included in `bash/` only if Phase 1 determines it is still needed.
 
 ### Stow Usage
 
 ```bash
 cd ~/dotfiles
-stow bash   # Creates symlinks: ~/.bashrc -> dotfiles/bash/.bashrc, etc.
+stow bash   # Creates symlinks in ~ (parent of dotfiles dir)
 ```
+
+Stow's default target is the parent directory of the stow dir. Since the repo is at `~/dotfiles`, `stow bash` targets `~` correctly.
 
 ### Changes
 
 - Move install scripts to `scripts/` directory
 - Delete `make_link.sh` (replaced by Stow)
-- Create `.stow-local-ignore` to exclude `scripts/`, `README.md`, `docs/`, `install.sh`
+- Remove manual symlink creation from `install_asdf.sh` (lines that `rm -f` and `ln -sf` `.bash_asdf`)
+- No `.stow-local-ignore` needed: Stow only processes contents of package directories (e.g., `bash/`), so `scripts/`, `docs/`, `README.md`, `install.sh` are naturally excluded
 
 ## Phase 3: Install Automation
 
@@ -86,18 +100,18 @@ stow bash   # Creates symlinks: ~/.bashrc -> dotfiles/bash/.bashrc, etc.
 
 Execution order (dependency-based):
 
-1. `scripts/install_common.sh` — base packages (Linuxbrew, stow, CLI tools)
+1. `scripts/install_common.sh` — base packages (Linuxbrew, stow, starship, gh, CLI tools)
 2. `stow bash` — create shell config symlinks
 3. `scripts/install_asdf.sh` — asdf version manager
 4. `scripts/install_elixir.sh` — Elixir via asdf (depends on asdf)
-5. `scripts/git_settings.sh` — Git configuration
+5. `scripts/git_settings.sh` — Git configuration (requires interactive input: email and username)
 
 ### Requirements
 
 - Idempotent: safe to run multiple times
 - Root execution prevention (inherited from existing scripts)
 - Success/failure logging per step
-- Add `stow` to `install_common.sh` package list
+- `git_settings.sh` prompts for email/username interactively (cannot run unattended)
 
 ### `install_elixir.sh` Improvements
 
@@ -117,5 +131,5 @@ Execution order (dependency-based):
 
 - All unused files and config lines removed
 - `stow bash` creates correct symlinks to `$HOME`
-- `install.sh` runs end-to-end on a clean system
+- `install.sh` runs end-to-end (with interactive git_settings step)
 - No broken references in any config file
