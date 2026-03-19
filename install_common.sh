@@ -25,12 +25,8 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ### Install tools.
 ################################################################################
 # Install tools using brew.
-brew install gcc git curl wget fzf eza bat ripgrep fd vim oh-my-posh
+brew install gcc git curl wget fzf eza bat ripgrep fd vim starship stow gh
 brew unlink util-linux
 brew install bash-completion
 
-################################################################################
-### Settings.
-################################################################################
 
-# TODOs
