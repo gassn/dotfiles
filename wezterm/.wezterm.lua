@@ -42,7 +42,7 @@ config.visual_bell = {
 }
 
 -- Leader key
-config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.leader = { key = 'Space', mods = 'CTRL|SHIFT', timeout_milliseconds = 1000 }
 
 -- Keybindings
 config.keys = {
