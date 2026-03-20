@@ -38,22 +38,14 @@ stow_with_backup() {
         return
     fi
 
-    # 競合ファイルをバックアップ
-    local backup_dir="$HOME/.stow-backup.$(date +%Y%m%d%H%M%S)"
-    log "Conflicts detected for '$pkg'. Backing up to $backup_dir"
-
-    while read -r line; do
-        # "existing target is neither a link nor a directory: .claude/settings.json" の形式からパスを抽出
-        local target
-        target=$(echo "$line" | sed 's/.*existing target is neither a link nor a directory: //')
-        if [ -n "$target" ] && [ -e "$HOME/$target" ]; then
-            mkdir -p "$backup_dir/$(dirname "$target")"
-            mv "$HOME/$target" "$backup_dir/$target"
-        fi
-    done < <(echo "$conflicts")
-
-    stow -d "$SCRIPT_DIR" "$pkg"
-    log "Backup saved to $backup_dir"
+    # --adopt: 既存ファイル（手動シムリンク含む）をstow管理下に取り込む
+    # 取り込み後、パッケージ内のファイルがターゲットのファイルで上書きされるため、
+    # git checkout で元に戻す
+    log "Conflicts detected for '$pkg'. Adopting existing files..."
+    stow -d "$SCRIPT_DIR" --adopt "$pkg"
+    # adoptでパッケージ内ファイルが上書きされた場合、gitで復元
+    git -C "$SCRIPT_DIR" checkout -- "$pkg/" 2>/dev/null || true
+    log "Done: adopted and restored '$pkg'"
 }
 
 # Step 1: Base packages (Linuxbrew, stow, CLI tools)
