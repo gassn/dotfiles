@@ -60,3 +60,6 @@ alias ...='cd ../..'
 alias mkdir='mkdir -p'
 alias h='history'
 alias c='clear'
+
+# wezterm
+alias sync-wezterm='~/dotfiles/scripts/sync_wezterm.sh'

@@ -15,8 +15,12 @@ if [ ! -d /mnt/c ]; then
 fi
 
 # Windows側ホームディレクトリを動的取得
-WIN_HOME="$(wslpath "$(cmd.exe /C 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')")" || {
-    echo "エラー: Windows ユーザープロファイルの取得に失敗しました" >&2
+_userprofile="$(cmd.exe /C 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')" || {
+    echo "エラー: USERPROFILE の取得に失敗しました" >&2
+    exit 1
+}
+WIN_HOME="$(wslpath "$_userprofile")" || {
+    echo "エラー: wslpath の変換に失敗しました" >&2
     exit 1
 }
 WIN_WEZTERM="$WIN_HOME/.wezterm.lua"
