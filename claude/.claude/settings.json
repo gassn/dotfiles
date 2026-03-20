@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Write(*)",
+      "Edit(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "Skill(tsumiki:*)",
+      "mcp__postgres__query"
+    ]
+  },
+  "enabledPlugins": {
+    "tsumiki@tsumiki": true,
+    "everything-claude-code@everything-claude-code": false,
+    "frontend-design@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "tsumiki": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/classmethod/tsumiki.git"
+      }
+    },
+    "everything-claude-code": {
+      "source": {
+        "source": "github",
+        "repo": "affaan-m/everything-claude-code"
+      }
+    }
+  },
+  "language": "Japanese",
+  "alwaysThinkingEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "preferredNotifChannel": "terminal_bell"
+}
