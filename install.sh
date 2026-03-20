@@ -38,14 +38,33 @@ stow_with_backup() {
         return
     fi
 
-    # --adopt: 既存ファイル（手動シムリンク含む）をstow管理下に取り込む
-    # 取り込み後、パッケージ内のファイルがターゲットのファイルで上書きされるため、
-    # git checkout で元に戻す
-    log "Conflicts detected for '$pkg'. Adopting existing files..."
-    stow -d "$SCRIPT_DIR" --adopt "$pkg"
-    # adoptでパッケージ内ファイルが上書きされた場合、gitで復元
-    git -C "$SCRIPT_DIR" checkout -- "$pkg/" 2>/dev/null || true
-    log "Done: adopted and restored '$pkg'"
+    # 競合するファイルを処理
+    local backup_dir="$HOME/.stow-backup.$(date +%Y%m%d%H%M%S)"
+    log "Conflicts detected for '$pkg'. Resolving..."
+
+    while read -r line; do
+        # 競合パスを抽出（"existing target is ..." の後のパス部分）
+        local target
+        target=$(echo "$line" | sed -n 's/.*existing target is [^:]*: //p')
+        [ -z "$target" ] && continue
+
+        local full_path="$HOME/$target"
+        [ ! -e "$full_path" ] && [ ! -L "$full_path" ] && continue
+
+        if [ -L "$full_path" ]; then
+            # シムリンクは削除（stowが再作成する）
+            rm "$full_path"
+        else
+            # 通常ファイルはバックアップしてから削除
+            mkdir -p "$backup_dir/$(dirname "$target")"
+            mv "$full_path" "$backup_dir/$target"
+        fi
+    done < <(echo "$conflicts")
+
+    stow -d "$SCRIPT_DIR" "$pkg"
+    if [ -d "$backup_dir" ]; then
+        log "Backup saved to $backup_dir"
+    fi
 }
 
 # Step 1: Base packages (Linuxbrew, stow, CLI tools)
