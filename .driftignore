@@ -19,10 +19,8 @@
 .claude/tasks/
 .claude/telemetry/
 .claude/todos/
-.claude/plugins/cache/
-.claude/plugins/marketplaces/
-.claude/plugins/data/
-.claude/plugins/install-counts-cache.json
+.claude/rules/
+.claude/plugins/
 
 # Bash ランタイム
 .bash_history
