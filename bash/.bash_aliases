@@ -1,22 +1,16 @@
-# enable color support of ls and also add handy aliases
+# eza (ls replacement)
 alias ls='eza --icons'
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+alias ll='eza --icons -alF --git'
+alias la='eza --icons -a'
+alias tree='eza --icons -T'
 
-    alias ls='eza --color=auto --icons'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+# bat (cat replacement)
+alias cat='bat --paging=never --style=plain'
+alias catn='bat --paging=never'
+alias less='bat --paging=always'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -a'
-alias tree='ll -T'
+# ripgrep
+alias rg='rg --smart-case'
 
-# cat to bat aliases
-alias cat='bat'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# grep color support
+alias grep='grep --color=auto'
