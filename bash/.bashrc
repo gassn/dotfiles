@@ -64,5 +64,8 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# Enable zoxide.
+eval "$(zoxide init bash)"
+
 eval "$(starship init bash)"
 

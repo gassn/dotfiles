@@ -22,3 +22,9 @@ git config --global user.email "$EMAIL"
 git config --global user.name "$USERNAME"
 git config --global color.ui auto
 git config --global core.editor vim
+# delta (git pager)
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global delta.side-by-side true
+git config --global merge.conflictStyle zdiff3
