@@ -27,11 +27,6 @@ sudo apt-get -y install build-essential autoconf m4 libncurses5-dev \
   libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop \
   libxml2-utils libncurses-dev openjdk-11-jdk
 
-# Python build dependencies.
-sudo apt-get -y install make libssl-dev zlib1g-dev libbz2-dev \
-  libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev \
-  xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-
 ################################################################################
 ### Install languages via asdf.
 ################################################################################
@@ -45,9 +40,7 @@ install_language() {
     echo "Done: $name $(asdf latest "$name")"
 }
 
-# Order matters: erlang before elixir, python before awscli.
+# Order matters: erlang before elixir.
 install_language erlang
 install_language elixir
 install_language nodejs
-install_language python
-install_language awscli
