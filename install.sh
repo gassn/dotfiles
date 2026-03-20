@@ -43,9 +43,14 @@ stow_with_backup() {
     log "Conflicts detected for '$pkg'. Resolving..."
 
     while read -r line; do
-        # 競合パスを抽出（"existing target is ..." の後のパス部分）
+        # 競合パスを抽出（2つのフォーマットに対応）
+        # 1: "existing target is not owned by stow: .bashrc"
+        # 2: "over existing target .claude/settings.json since"
         local target
         target=$(echo "$line" | sed -n 's/.*existing target is [^:]*: //p')
+        if [ -z "$target" ]; then
+            target=$(echo "$line" | sed -n 's/.*over existing target \(.*\) since.*/\1/p')
+        fi
         [ -z "$target" ] && continue
 
         local full_path="$HOME/$target"
