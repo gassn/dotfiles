@@ -1,0 +1,32 @@
+# Claude Code ランタイムデータ
+.claude/.credentials.json
+.claude/history.jsonl
+.claude/stats-cache.json
+.claude/backups/
+.claude/cache/
+.claude/debug/
+.claude/file-history/
+.claude/homunculus/
+.claude/ide/
+.claude/metrics/
+.claude/plans/
+.claude/projects/
+.claude/session-env/
+.claude/sessions/
+.claude/shell-snapshots/
+.claude/skills/
+.claude/statsig/
+.claude/tasks/
+.claude/telemetry/
+.claude/todos/
+.claude/plugins/cache/
+.claude/plugins/marketplaces/
+.claude/plugins/data/
+.claude/plugins/install-counts-cache.json
+
+# Bash ランタイム
+.bash_history
+.bashrc.bak
+
+# Tmux ランタイム
+.tmux/
