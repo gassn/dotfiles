@@ -35,6 +35,10 @@ set -o vi
 # Enable GitHub CLI completion.
 . <(gh completion bash)
 
+# Enable uv/uvx completion.
+. <(uv generate-shell-completion bash)
+. <(uvx --generate-shell-completion bash)
+
 # Enable zoxide.
 eval "$(zoxide init bash)"
 
