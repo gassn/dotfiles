@@ -39,6 +39,9 @@ set -o vi
 . <(uv generate-shell-completion bash)
 . <(uvx --generate-shell-completion bash)
 
+# Enable atuin (shell history).
+eval "$(atuin init bash)"
+
 # Enable zoxide.
 eval "$(zoxide init bash)"
 

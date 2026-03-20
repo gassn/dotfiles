@@ -26,5 +26,8 @@
 .bash_history
 .bashrc.bak
 
+# Atuin ランタイム
+.local/share/atuin/
+
 # Tmux ランタイム
 .tmux/
