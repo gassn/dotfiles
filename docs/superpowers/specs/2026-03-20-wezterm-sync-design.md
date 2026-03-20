@@ -8,8 +8,8 @@ Windows側の `.wezterm.lua` と dotfiles リポジトリ内の `wezterm/.wezter
 
 | 場所 | パス | 備考 |
 |------|------|------|
-| Windows側 | `$WIN_WEZTERM` (デフォルト: `/mnt/c/Users/itisa/.wezterm.lua`) | スクリプト上部で変数定義 |
-| dotfiles側 | `$DOT_WEZTERM` (デフォルト: `~/dotfiles/wezterm/.wezterm.lua`) | スクリプト上部で変数定義 |
+| Windows側 | `$WIN_WEZTERM` | `wslpath "$(cmd.exe /C 'echo %USERPROFILE%' 2>/dev/null | tr -d '\r')"/.wezterm.lua` で動的取得 |
+| dotfiles側 | `$DOT_WEZTERM` | `DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"` から導出 |
 
 ## 前提条件
 
@@ -28,7 +28,7 @@ Windows側の `.wezterm.lua` と dotfiles リポジトリ内の `wezterm/.wezter
    - `[w]` Windows → dotfiles にコピー
    - `[d]` dotfiles → Windows にコピー
    - `[q]` 何もしない
-6. コピー前に上書き先の `.bak` バックアップを作成
+6. コピー前に上書き先の `.bak` バックアップを作成（単一ファイル、毎回上書き）
 7. `cp` 実行後、成功を確認して報告
 
 ## ファイル構成
