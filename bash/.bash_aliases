@@ -10,7 +10,7 @@ alias catn='bat --paging=never'
 alias less='bat --paging=always'
 
 # ripgrep
-alias rg='rg --smart-case'
+alias rg='rg --smart-case --hidden'
 
 # grep color support
 alias grep='grep --color=auto'
