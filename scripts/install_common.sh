@@ -29,4 +29,4 @@ brew install gcc git curl wget fzf eza bat ripgrep fd vim starship stow gh jq in
 brew unlink util-linux
 brew unlink node 2>/dev/null || true
 brew list --formula | grep '^python@' | xargs -I{} brew unlink {} 2>/dev/null || true
-brew install bash-completion
+brew install bash-completion@2
