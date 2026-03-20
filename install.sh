@@ -81,6 +81,8 @@ stow_with_backup bash
 stow_with_backup tmux
 stow_with_backup claude
 stow_with_backup starship
+stow_with_backup git
+stow_with_backup vscode
 log "Done: symlinks created"
 
 # Step 3: tmux + TPM + plugins
