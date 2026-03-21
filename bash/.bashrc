@@ -39,11 +39,12 @@ set -o vi
 . <(uv generate-shell-completion bash)
 . <(uvx --generate-shell-completion bash)
 
+# Enable starship prompt (must be before atuin; atuin uses precmd_functions
+# which bypasses PROMPT_COMMAND where starship_precmd is registered).
+eval "$(starship init bash)"
+
 # Enable atuin (shell history).
 eval "$(atuin init bash)"
 
 # Enable zoxide.
 eval "$(zoxide init bash)"
-
-# Enable starship prompt.
-eval "$(starship init bash)"
