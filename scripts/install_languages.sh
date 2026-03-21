@@ -44,3 +44,4 @@ install_language() {
 install_language erlang
 install_language elixir
 install_language nodejs
+install_language bun
