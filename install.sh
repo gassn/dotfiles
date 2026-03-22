@@ -83,6 +83,7 @@ stow_with_backup claude
 stow_with_backup starship
 stow_with_backup git
 stow_with_backup vscode
+stow_with_backup atuin
 log "Done: symlinks created"
 
 # Step 3: tmux + TPM + plugins

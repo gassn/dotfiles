@@ -1,0 +1,12 @@
+# ローカル完結、サーバー同期なし
+auto_sync = false
+
+# 全セッションの履歴を検索対象にする（デフォルトと同じだが明示的に設定）
+filter_mode = "global"
+
+# 検索モード
+search_mode = "fuzzy"
+
+# 選択時にコマンドラインに配置（直接実行しない）
+# 実行前にコマンドを確認・編集できる
+enter_accept = false

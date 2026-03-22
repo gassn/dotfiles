@@ -23,8 +23,11 @@ fi
 # vi like keybind
 set -o vi
 
-# Enable fzf.
+# Enable fzf (Ctrl+R is handled by atuin, so unbind fzf's).
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+bind -m vi-insert -r '\C-r' 2>/dev/null
+bind -m vi-command -r '\C-r' 2>/dev/null
+bind -m emacs -r '\C-r' 2>/dev/null
 
 # Enable completion.
 [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
@@ -39,12 +42,19 @@ set -o vi
 . <(uv generate-shell-completion bash)
 . <(uvx --generate-shell-completion bash)
 
-# Enable starship prompt (must be before atuin; atuin uses precmd_functions
-# which bypasses PROMPT_COMMAND where starship_precmd is registered).
+# Enable starship prompt.
 eval "$(starship init bash)"
 
 # Enable atuin (shell history).
+# atuin adds to precmd_functions/preexec_functions arrays (not PROMPT_COMMAND).
 eval "$(atuin init bash)"
 
 # Enable zoxide.
 eval "$(zoxide init bash)"
+
+# Enable bash-preexec (required by atuin for precmd/preexec hooks).
+# Must be sourced AFTER all tools that modify PROMPT_COMMAND (starship, zoxide).
+# bash-preexec defers __bp_install to the first PROMPT_COMMAND execution.
+# If other commands run after __bp_install, the DEBUG trap consumes the
+# interactive mode flag, causing the first command's preexec to be skipped.
+[[ -f /home/linuxbrew/.linuxbrew/etc/profile.d/bash-preexec.sh ]] && . /home/linuxbrew/.linuxbrew/etc/profile.d/bash-preexec.sh
