@@ -52,6 +52,13 @@ eval "$(atuin init bash)"
 # Enable zoxide.
 eval "$(zoxide init bash)"
 
+# Ctrl+G: jump to directory from zoxide history via fzf.
+__zoxide_fzf() {
+    local dir
+    dir=$(zoxide query -l | fzf --height 40% --reverse) && cd "$dir"
+}
+bind -x '"\C-g": __zoxide_fzf'
+
 # Enable bash-preexec (required by atuin for precmd/preexec hooks).
 # Must be sourced AFTER all tools that modify PROMPT_COMMAND (starship, zoxide).
 # bash-preexec defers __bp_install to the first PROMPT_COMMAND execution.
