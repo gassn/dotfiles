@@ -24,6 +24,7 @@ fi
 set -o vi
 
 # Enable fzf (Ctrl+R is handled by atuin, so unbind fzf's).
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git --exclude __pycache__"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 bind -m vi-insert -r '\C-r' 2>/dev/null
 bind -m vi-command -r '\C-r' 2>/dev/null
